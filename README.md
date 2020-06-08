@@ -19,3 +19,9 @@ Docker for Mac:
   modify `C:\Windows\System32\Drivers\etc\hosts` file to include `127.0.0.1 ticketing.dev`
 
 ---
+
+#### Skaffold
+
+Install Skaffold Dev Tool: `brew install skaffold`
+
+From root project directory: run `skaffold dev`
