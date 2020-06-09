@@ -1,4 +1,4 @@
-import { CustomError } from "./custom-error";
+import { CustomError, ErrorMessage } from "./custom-error";
 
 export class DatabaseConnectionError extends CustomError {
     statusCode = 500;
@@ -11,7 +11,7 @@ export class DatabaseConnectionError extends CustomError {
         Object.setPrototypeOf(this, DatabaseConnectionError.prototype);
     }
 
-    serializeErrors(): { message: string; field?: string }[] {
+    serializeErrors(): ErrorMessage[] {
         return [
             {
                 message: this.reason,

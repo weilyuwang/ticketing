@@ -7,6 +7,7 @@ import {
     Result,
 } from "express-validator";
 import { RequestValidationError } from "../errors/request-validation-errors";
+import { BadRequestError } from "../errors/bad-request-error";
 
 const router = express.Router();
 
@@ -29,14 +30,15 @@ router.post(
             throw new RequestValidationError(errors.array());
         }
 
+        // Once passed the initial request params check:
+
+        // extract email and password info from request body
         const { email, password } = req.body;
 
         // first check if the email has been registered
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            console.log("Email already in use");
-            res.send({});
-            return;
+            throw new BadRequestError("Email already in use");
         }
 
         // Create new user and persist it into MongoDB

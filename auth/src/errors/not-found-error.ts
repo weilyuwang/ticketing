@@ -1,4 +1,4 @@
-import { CustomError } from "./custom-error";
+import { CustomError, ErrorMessage } from "./custom-error";
 
 export class NotFoundError extends CustomError {
     statusCode: number = 404;
@@ -10,7 +10,7 @@ export class NotFoundError extends CustomError {
         Object.setPrototypeOf(this, NotFoundError.prototype);
     }
 
-    serializeErrors(): { message: string; field?: string }[] {
+    serializeErrors(): ErrorMessage[] {
         return [
             {
                 message: "404 Not Found",

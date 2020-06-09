@@ -10,5 +10,10 @@ export abstract class CustomError extends Error {
     }
 
     // required methods (signatures)
-    abstract serializeErrors(): { message: string; field?: string }[]; // field is option (?)
+    abstract serializeErrors(): ErrorMessage[]; // field is option (?)
+}
+
+export interface ErrorMessage {
+    message: string;
+    field?: string;
 }
