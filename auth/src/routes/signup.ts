@@ -1,5 +1,10 @@
 import express, { Request, Response } from "express";
-import { body, validationResult, ValidationError } from "express-validator";
+import {
+    body,
+    validationResult,
+    ValidationError,
+    Result,
+} from "express-validator";
 import { RequestValidationError } from "../errors/request-validation-errors";
 import { DatabaseConnectionError } from "../errors/database-connection-error";
 
@@ -16,10 +21,11 @@ router.post(
     ],
     (req: Request, res: Response) => {
         // handle erros coming from validator, if any
-        const errors = validationResult(req);
+        const errors: Result<ValidationError> = validationResult(req);
 
         if (!errors.isEmpty()) {
             // need to call array() methods to error object (of type Result<ValidationError>) first
+            // to convert errors into ValidationError[] type
             throw new RequestValidationError(errors.array());
         }
 
