@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth
-          image: weilyuwang/ticketing-auth
+          image: us.gcr.io/ticketing-dev-279800/auth
 ---
 apiVersion: v1
 kind: Service
