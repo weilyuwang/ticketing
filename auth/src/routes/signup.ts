@@ -1,4 +1,5 @@
 import express, { Request, Response } from "express";
+import { User } from "../models/user";
 import {
     body,
     validationResult,
@@ -6,7 +7,6 @@ import {
     Result,
 } from "express-validator";
 import { RequestValidationError } from "../errors/request-validation-errors";
-import { DatabaseConnectionError } from "../errors/database-connection-error";
 
 const router = express.Router();
 
@@ -19,7 +19,7 @@ router.post(
             .isLength({ min: 4, max: 20 })
             .withMessage("Password must be between 4 and 20 characters"),
     ],
-    (req: Request, res: Response) => {
+    async (req: Request, res: Response) => {
         // handle erros coming from validator, if any
         const errors: Result<ValidationError> = validationResult(req);
 
@@ -29,13 +29,21 @@ router.post(
             throw new RequestValidationError(errors.array());
         }
 
-        // if user input passes the validation, extract the email & passwrod from req body
         const { email, password } = req.body;
 
-        console.log("Creating a user...");
-        throw new DatabaseConnectionError();
+        // first check if the email has been registered
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            console.log("Email already in use");
+            res.send({});
+            return;
+        }
 
-        res.send({});
+        // Create new user and persist it into MongoDB
+        const user = User.build({ email, password });
+        await user.save();
+
+        res.status(201).send(user);
     }
 );
 

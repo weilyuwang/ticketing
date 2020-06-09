@@ -51,7 +51,7 @@ userSchema.statics.build = (attrs: UserAttrs) => {
  * To use our schema definition, we need to convert our userSchema into a UserModel we can work with.
  * To do so, we pass it into mongoose.model(modelName, schema):
  */
-const User = mongoose.model<UserDoc, UserModel>("User", userSchema);
+const User: UserModel = mongoose.model<UserDoc, UserModel>("User", userSchema);
 
 // const testUesr = User.build({
 //     email: "email",
