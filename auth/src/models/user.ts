@@ -18,12 +18,12 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-const User = mongoose.model("User", userSchema);
+const UserModel = mongoose.model("User", userSchema);
 
-// To leverage TypeScript type checking mechanism, do not call new User() directly
-// instead call buildUser to create a new User model object
-const buildUser = (attrs: UserAttrs) => {
-    return new User(attrs);
-};
+class User extends UserModel {
+    constructor(attrs: UserAttrs) {
+        super(attrs);
+    }
+}
 
-export { User, buildUser };
+export { User };
