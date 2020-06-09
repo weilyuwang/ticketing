@@ -10,13 +10,18 @@ Docker for Mac:
 #### Set up mock host name:
 
 > **To redirect requests coming to: ticketing.dev => localhost**
-> only for local development purposes
+>
+> - only for local development purposes
 
 - MacOS/Linux:
   modify `/etc/hosts` file to include `127.0.0.1 ticketing.dev`
 
 * Windows:
   modify `C:\Windows\System32\Drivers\etc\hosts` file to include `127.0.0.1 ticketing.dev`
+
+> To skip the unskippable HTTPS warning in Chrome:
+>
+> - try type **thisisunsafe**
 
 ---
 
