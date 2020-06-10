@@ -28,16 +28,28 @@ interface UserDoc extends mongoose.Document {
  * Everything in Mongoose starts with a Schema. Each schema maps to a MongoDB collection
  * and defines the shape of the documents within that collection.
  */
-const userSchema = new mongoose.Schema({
-    email: {
-        type: String,
-        required: true,
+const userSchema = new mongoose.Schema(
+    {
+        email: {
+            type: String,
+            required: true,
+        },
+        password: {
+            type: String,
+            required: true,
+        },
     },
-    password: {
-        type: String,
-        required: true,
-    },
-});
+    {
+        toJSON: {
+            transform(doc, ret) {
+                ret.id = ret._id;
+                delete ret._id;
+                delete ret.password; // remove property of an object (javascript built in method)
+                delete ret.__v;
+            },
+        },
+    }
+);
 
 // hash the password using pre-save hook
 userSchema.pre("save", async function (done) {
