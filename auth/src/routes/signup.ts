@@ -9,6 +9,7 @@ import {
 import jwt from "jsonwebtoken";
 import { RequestValidationError } from "../errors/request-validation-errors";
 import { BadRequestError } from "../errors/bad-request-error";
+import { validateRequest } from "../middlewares/validate-request";
 
 const router = express.Router();
 
@@ -21,18 +22,8 @@ router.post(
             .isLength({ min: 4, max: 20 })
             .withMessage("Password must be between 4 and 20 characters"),
     ],
+    validateRequest,
     async (req: Request, res: Response) => {
-        // handle erros coming from validator, if any
-        const errors: Result<ValidationError> = validationResult(req);
-
-        if (!errors.isEmpty()) {
-            // need to call array() methods to error object (of type Result<ValidationError>) first
-            // to convert errors into ValidationError[] type
-            throw new RequestValidationError(errors.array());
-        }
-
-        // Once passed the initial request params check:
-
         // extract email and password info from request body
         const { email, password } = req.body;
 
