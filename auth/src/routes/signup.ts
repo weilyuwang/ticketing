@@ -1,13 +1,7 @@
 import express, { Request, Response } from "express";
 import { User } from "../models/user";
-import {
-    body,
-    validationResult,
-    ValidationError,
-    Result,
-} from "express-validator";
+import { body } from "express-validator";
 import jwt from "jsonwebtoken";
-import { RequestValidationError } from "../errors/request-validation-errors";
 import { BadRequestError } from "../errors/bad-request-error";
 import { validateRequest } from "../middlewares/validate-request";
 
