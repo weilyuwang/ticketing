@@ -6,6 +6,7 @@ import {
     ValidationError,
     Result,
 } from "express-validator";
+import jwt from "jsonwebtoken";
 import { RequestValidationError } from "../errors/request-validation-errors";
 import { BadRequestError } from "../errors/bad-request-error";
 
@@ -44,6 +45,20 @@ router.post(
         // Create new user and persist it into MongoDB
         const user = User.build({ email, password });
         await user.save();
+
+        // Generate JWT
+        const userJwt = jwt.sign(
+            {
+                id: user.id,
+                email: user.email,
+            },
+            "secret_key"
+        );
+
+        // Store it on session object
+        req.session = {
+            jwt: userJwt,
+        };
 
         res.status(201).send(user);
     }
