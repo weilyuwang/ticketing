@@ -1,6 +1,7 @@
 import { scrypt, randomBytes } from "crypto";
 import { promisify } from "util";
 
+// by promisify the scrypt, we can then use async-await syntax
 const scryptAsync = promisify(scrypt);
 
 export class Password {
@@ -11,5 +12,10 @@ export class Password {
         return `${buf.toString("hex")}.${salt}`;
     }
 
-    static compare(storedPassword: string, suppliedPassword: string) {}
+    static async compare(storedPassword: string, suppliedPassword: string) {
+        const [hashedPassword, salt] = storedPassword.split(".");
+        const buf = (await scryptAsync(suppliedPassword, salt, 64)) as Buffer;
+
+        return buf.toString("hex") === hashedPassword;
+    }
 }
