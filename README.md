@@ -40,3 +40,9 @@ From root project directory: run `skaffold dev`
 - Want to use Server-Side Rendering and access user's auth information when HTML first gets rendered - so `store and transmit JWT within Cookies`, i.e. use cookies as a transport mechanism.
 
 - Want to be able to revoke a user - so use `short-lived JWT` (e.g. expired in 15 minutes) with `refresh` mechanism.
+
+---
+
+#### Client Side
+
+NestJS for SSR (Server Side Rendering)
