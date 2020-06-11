@@ -9,7 +9,7 @@ import { signinRouter } from "./routes/signin";
 import { signupRouter } from "./routes/signup";
 import { signoutRouter } from "./routes/signout";
 
-import { errorHandler } from "./middlewares/error-handler";
+import { errorHandlerMiddleware } from "./middlewares/error-handler";
 
 import { NotFoundError } from "./errors/not-found-error";
 
@@ -34,7 +34,7 @@ app.all("*", async (req, res) => {
     throw new NotFoundError();
 });
 
-app.use(errorHandler);
+app.use(errorHandlerMiddleware);
 
 const start = async () => {
     // First check if JWT_KEY is defined
