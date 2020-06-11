@@ -11,10 +11,6 @@ export class NotFoundError extends CustomError {
     }
 
     serializeErrors(): ErrorMessage[] {
-        return [
-            {
-                message: "404 Not Found",
-            },
-        ];
+        return [{ message: "404 Not Found" }];
     }
 }
