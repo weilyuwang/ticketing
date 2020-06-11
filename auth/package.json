@@ -1,13 +1,21 @@
 {
   "name": "auth",
   "version": "1.0.0",
-  "description": "",
+  "description": "Auth Service",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev src/index.ts --poll"
+    "start": "ts-node-dev src/index.ts --poll",
+    "test": "jest --watchAll --no-cache"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test/setup.ts"
+    ]
   },
   "keywords": [],
-  "author": "",
+  "author": "Weilyu Wang",
   "license": "ISC",
   "dependencies": {
     "@types/cookie-session": "^2.0.39",
