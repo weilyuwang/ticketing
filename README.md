@@ -45,4 +45,4 @@ From root project directory: run `skaffold dev`
 
 #### Client Side
 
-ReactJS + NestJS
+ReactJS + NextJS
