@@ -45,4 +45,4 @@ From root project directory: run `skaffold dev`
 
 #### Client Side
 
-NestJS for SSR (Server Side Rendering)
+ReactJS + NestJS
