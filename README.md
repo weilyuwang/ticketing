@@ -49,6 +49,8 @@ ReactJS + **NextJS**
 
 `NextJS: Minimalistic framework for rendering React app on the server`: https://nextjs.org/
 
+---
+
 #### Common NPM Module
 
 all the commonly used classes & middlewares are extracted into a published NPM Module: @wwticketing/common: https://www.npmjs.com/package/@wwticketing/common
