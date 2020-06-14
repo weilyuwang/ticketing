@@ -48,3 +48,11 @@ From root project directory: run `skaffold dev`
 ReactJS + **NextJS**
 
 `NextJS: Minimalistic framework for rendering React app on the server`: https://nextjs.org/
+
+#### Common NPM Module
+
+all the commonly used classes & middlewares are extracted into a published NPM Module: @wwticketing/common: https://www.npmjs.com/package/@wwticketing/common
+
+> Contains commonly used Middlewares and Error Classes for ticketing microservices
+
+> Source codes: https://github.com/weilyuwang/ticketing-common-lib
