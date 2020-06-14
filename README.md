@@ -47,7 +47,9 @@ From root project directory: run `skaffold dev`
 
 **NextJS**
 
-`NextJS: Minimalistic framework for rendering React app on the server (Server Side Rendering).`: check documentations: https://nextjs.org/
+`NextJS: Minimalistic framework for rendering React app on the server.`: 
+
+> check documentations: https://nextjs.org/
 
 ---
 
