@@ -45,15 +45,17 @@ From root project directory: run `skaffold dev`
 
 #### Client Side
 
-ReactJS + **NextJS**
+**NextJS Framework**
 
-`NextJS: Minimalistic framework for rendering React app on the server`: https://nextjs.org/
+`NextJS: Minimalistic framework for rendering React app on the server. (SSR)`: https://nextjs.org/
 
 ---
 
 #### Common NPM Module
 
-all the commonly used classes & middlewares are extracted into a published NPM Module: @wwticketing/common: https://www.npmjs.com/package/@wwticketing/common
+All the commonly used classes & middlewares are extracted into a published NPM Module.
+
+- @wwticketing/common: https://www.npmjs.com/package/@wwticketing/common
 
 > Contains commonly used Middlewares and Error Classes for ticketing microservices
 
