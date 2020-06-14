@@ -1,4 +1,4 @@
-import axios from "axios";
+import buildClient from "../api/buildClient";
 
 const LandingPage = ({ currentUser }) => {
   console.log(currentUser);
@@ -7,27 +7,12 @@ const LandingPage = ({ currentUser }) => {
 };
 
 // executed during the SSR process
-LandingPage.getInitialProps = async ({ req }) => {
-  if (typeof window === "undefined") {
-    // we are on the server!
-    // requests should be made to 'http://SERVICENAME.NAMESPACE.svc.cluster.local' (cross-namespace connection)
-    // need to pass through the headers from req
-    const { data } = await axios.get(
-      "http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser",
-      {
-        headers: req.headers,
-      }
-    );
+LandingPage.getInitialProps = async (context) => {
+  const client = buildClient(context);
 
-    return data;
-  } else {
-    // we are on the browser!
-    // requests can be made with a base url of ''
-    // - browser gonna automatically append the domain for us
-    const { data } = await axios.get("/api/users/currentUser");
-    // data = { currentUser: null } or { currentUser: {} }
-    return data;
-  }
+  const response = await client.get("/api/users/currentuser");
+
+  return response.data;
 };
 
 export default LandingPage;
