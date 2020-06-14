@@ -6,8 +6,7 @@ import { currentUserRouter } from "./routes/current-user";
 import { signinRouter } from "./routes/signin";
 import { signupRouter } from "./routes/signup";
 import { signoutRouter } from "./routes/signout";
-import { errorHandlerMiddleware } from "./middlewares/error-handler";
-import { NotFoundError } from "./errors/not-found-error";
+import { errorHandlerMiddleware, NotFoundError } from "@wwticketing/common";
 
 const app = express();
 app.set("trust proxy", true); // trust ingress & nginx proxy
