@@ -7,17 +7,15 @@ const LandingPage = ({ currentUser }) => {
 };
 
 // executed during the SSR process
-LandingPage.getInitialProps = async () => {
+LandingPage.getInitialProps = async ({ req }) => {
   if (typeof window === "undefined") {
     // we are on the server!
     // requests should be made to 'http://SERVICENAME.NAMESPACE.svc.cluster.local' (cross-namespace connection)
-    // we also need to specify the Host header
+    // need to pass through the headers from req
     const { data } = await axios.get(
       "http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser",
       {
-        headers: {
-          Host: "ticketing.dev",
-        },
+        headers: req.headers,
       }
     );
 
