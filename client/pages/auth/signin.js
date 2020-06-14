@@ -5,7 +5,7 @@ import Router from "next/router";
 export default () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [doRequest, errors] = useRequest({
+  const { doRequest, errors } = useRequest({
     url: "/api/users/signin",
     method: "post",
     body: {

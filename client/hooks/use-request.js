@@ -14,6 +14,7 @@ export default ({ url, method, body, onSuccess }) => {
       }
       return response.data;
     } catch (err) {
+      console.log(err);
       setErrors(
         <div className="alert alert-danger">
           <ul className="my-0">
@@ -26,5 +27,5 @@ export default ({ url, method, body, onSuccess }) => {
     }
   };
 
-  return [doRequest, errors];
+  return { doRequest, errors };
 };
