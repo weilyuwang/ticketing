@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tickets-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tickets-mongo
+  template:
+    metadata:
+      labels:
+        app: tickets-mongo
+    spec:
+      containers:
+        - name: tickets-mongo
+          image: mongo ## pull mongo image directly from Docker Hub
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tickets-mongo-srv # domain name of tickets-mongo cluster ip
+spec:
+  selector:
+    app: tickets-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017 # standard port for MongoDB
+      targetPort: 27017
