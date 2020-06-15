@@ -47,7 +47,7 @@ From root project directory: run `skaffold dev`
 
 **NextJS**
 
-`NextJS: Minimalistic framework for rendering React app on the server.`: 
+`NextJS: Minimalistic framework for rendering React app on the server.`:
 
 > check documentations: https://nextjs.org/
 
@@ -62,3 +62,19 @@ All the commonly used classes & middlewares are extracted into a published NPM M
 > Contains commonly used Middlewares and Error Classes for ticketing microservices
 
 > Source codes: https://github.com/weilyuwang/ticketing-common-lib
+
+#### API
+
+##### tickets service
+
+> GET /api/tickets
+> To retrieve all tickets
+
+> GET /api/tickets/:id
+> To retrieve ticket with specific ID
+
+> POST /api/tickets
+> with request body {title: string, price: string}, to create a ticket
+
+> PUT /api/tickets/:id
+> with request body {title: string, price: string}, to update a ticket
