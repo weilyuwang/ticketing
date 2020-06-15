@@ -1,12 +1,11 @@
 import { MongoMemoryServer } from "mongodb-memory-server";
 import mongoose from "mongoose";
-import { app } from "../app";
-import request from "supertest";
+import jwt from "jsonwebtoken";
 
 declare global {
     namespace NodeJS {
         interface Global {
-            signup_and_get_cookie(): Promise<string[]>;
+            signin_and_get_cookie(): string[];
         }
     }
 }
@@ -41,16 +40,27 @@ afterAll(async () => {
 
 // global function only for test environment
 // signup and return the cookie from the response
-global.signup_and_get_cookie = async () => {
-    const email = "test@test.com";
-    const password = "password";
+global.signin_and_get_cookie = () => {
+    // Build a JWT payload. {id, email}
+    const payload = {
+        id: "tickets-test-id",
+        email: "test@test.com",
+    };
 
-    const response = await request(app)
-        .post("/api/users/signup")
-        .send({ email, password })
-        .expect(201);
+    // Create the JWT
+    const token = jwt.sign(payload, process.env.JWT_KEY!);
 
-    const cookie = response.get("Set-Cookie");
+    // Build session object. {jwt: MY_JWT}
+    const session = { jwt: token };
 
-    return cookie;
+    // Turn that session into JSON
+    const sessionJSON = JSON.stringify(session);
+
+    // Take that JSON and encode it as base64
+    const base64 = Buffer.from(sessionJSON).toString("base64");
+
+    // Return a string thats the cookie with the encoded data
+    const cookie_base64 = `express:sess=${base64}`;
+
+    return [cookie_base64]; // a little gottcha: put the cookie string inside an array to make supertest lib happy :)
 };
