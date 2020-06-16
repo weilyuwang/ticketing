@@ -33,7 +33,8 @@ const ticketSchema = new mongoose.Schema(
                 // modify ret: returned json object directly
                 // convert id => _id (normalize id property as other databases use _id)
                 ret.id = ret._id;
-                delete ret.id;
+                delete ret._id;
+                delete ret.__v;
             },
         },
     }
