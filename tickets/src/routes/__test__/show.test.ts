@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 
 it("returns a 404 if the ticket is not found", async () => {
     const ticketId = new mongoose.Types.ObjectId().toHexString();
-    console.log(ticketId);
 
     await request(app).get(`/api/tickets/${ticketId}`).send().expect(404);
 });
@@ -19,8 +18,6 @@ it("returns the ticket if the ticket is found", async () => {
         .set("Cookie", global.signin_and_get_cookie())
         .send({ title, price })
         .expect(201);
-
-    console.log(response.body);
 
     // then test if the ticket info can be found
     const ticketResponse = await request(app)
