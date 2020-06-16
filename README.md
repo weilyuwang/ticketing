@@ -65,9 +65,9 @@ All the commonly used classes & middlewares are extracted into a published NPM M
 
 ---
 
-#### API
+### API
 
-##### tickets service
+#### tickets service
 
 > GET /api/tickets
 > To retrieve all tickets
@@ -80,3 +80,9 @@ All the commonly used classes & middlewares are extracted into a published NPM M
 >
 > PUT /api/tickets/:id
 > with request body {title: string, price: string}, to update a ticket
+
+---
+
+### Event Bus
+
+#### NATS Streaming Server
