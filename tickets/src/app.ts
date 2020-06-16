@@ -9,6 +9,7 @@ import {
 } from "@wwticketing/common";
 import { createTicketRouter } from "./routes/new";
 import { showTicketRouter } from "./routes/show";
+import { indexTicketRouter } from "./routes/index";
 
 const app = express();
 app.set("trust proxy", true); // trust ingress & nginx proxy
@@ -28,6 +29,7 @@ app.use(currentUserMiddleware);
 // express routes
 app.use(createTicketRouter);
 app.use(showTicketRouter);
+app.use(indexTicketRouter);
 
 // use express-async-errors lib behind the scene to handle async errors
 app.all("*", async (req, res) => {
