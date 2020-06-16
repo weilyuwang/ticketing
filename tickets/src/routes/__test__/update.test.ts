@@ -78,17 +78,19 @@ it("udpates the ticket provided valid inputs", async () => {
         .post("/api/tickets")
         .set("Cookie", cookie)
         .send({ title: "some_title", price: 100 })
-        .expect(201);
+        .expect(201); //CREATED
 
     // update the ticket by the same user
     await request(app)
         .put(`/api/tickets/${response.body.id}`)
         .set("Cookie", cookie)
-        .send({ title: "updated_title", price: 80 });
+        .send({ title: "updated_title", price: 80 })
+        .expect(200); //UPDATE SUCCESSFULLY
 
     const ticketResponse = await request(app)
         .get(`/api/tickets/${response.body.id}`)
-        .send();
+        .send()
+        .expect(200);
 
     expect(ticketResponse.body.title).toEqual("updated_title");
     expect(ticketResponse.body.price).toEqual(80);
