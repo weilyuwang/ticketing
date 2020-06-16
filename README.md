@@ -63,18 +63,20 @@ All the commonly used classes & middlewares are extracted into a published NPM M
 
 > Source codes: https://github.com/weilyuwang/ticketing-common-lib
 
+---
+
 #### API
 
 ##### tickets service
 
 > GET /api/tickets
 > To retrieve all tickets
-
+>
 > GET /api/tickets/:id
 > To retrieve ticket with specific ID
-
+>
 > POST /api/tickets
 > with request body {title: string, price: string}, to create a ticket
-
+>
 > PUT /api/tickets/:id
 > with request body {title: string, price: string}, to update a ticket
