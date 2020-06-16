@@ -22,15 +22,13 @@ router.put(
     validateRequestMiddleware,
     async (req: Request, res: Response) => {
         const ticket = await Ticket.findById(req.params.id);
+
         if (!ticket) {
             throw new NotFoundError();
         }
 
         // to update the ticket, the user must be the author of the ticket
         if (ticket.userId !== req.currentUser!.id) {
-            // console.log("ticket: ", ticket);
-            // console.log("user: ", req.currentUser);
-
             throw new NotAuthorizedError();
         }
 
