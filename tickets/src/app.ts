@@ -10,6 +10,7 @@ import {
 import { createTicketRouter } from "./routes/new";
 import { showTicketRouter } from "./routes/show";
 import { indexTicketRouter } from "./routes/index";
+import { updateTicketRouter } from "./routes/update";
 
 const app = express();
 app.set("trust proxy", true); // trust ingress & nginx proxy
@@ -30,6 +31,7 @@ app.use(currentUserMiddleware);
 app.use(createTicketRouter);
 app.use(showTicketRouter);
 app.use(indexTicketRouter);
+app.use(updateTicketRouter);
 
 // use express-async-errors lib behind the scene to handle async errors
 app.all("*", async (req, res) => {
