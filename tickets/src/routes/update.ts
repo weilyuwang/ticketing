@@ -13,6 +13,13 @@ const router = express.Router();
 router.put(
     "/api/tickets/:id",
     requireAuthMiddleware,
+    [
+        body("title").not().isEmpty().withMessage("Title is required"),
+        body("price")
+            .isFloat({ gt: 0 })
+            .withMessage("Price must be provided and must be greater than 0"),
+    ],
+    validateRequestMiddleware,
     async (req: Request, res: Response) => {
         const ticket = await Ticket.findById(req.params.id);
         if (!ticket) {
@@ -21,8 +28,18 @@ router.put(
 
         // to update the ticket, the user must be the author of the ticket
         if (ticket.userId !== req.currentUser!.id) {
+            // console.log("ticket: ", ticket);
+            // console.log("user: ", req.currentUser);
+
             throw new NotAuthorizedError();
         }
+
+        ticket.set({
+            title: req.body.title,
+            price: req.body.price,
+        });
+
+        await ticket.save();
 
         res.send(ticket);
     }
