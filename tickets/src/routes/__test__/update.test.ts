@@ -21,7 +21,19 @@ it("returns a 401 if the user is not authenticated", async () => {
         .expect(401);
 });
 
-it("returns a 401 if the user does not own the ticket", async () => {});
+it("returns a 401 if the user does not own the ticket", async () => {
+    // everytime signin_and_get_cookie() is called, a new user id is generated
+    const response = await request(app)
+        .post("/api/tickets")
+        .set("Cookie", global.signin_and_get_cookie())
+        .send({ title: "some_title", price: 100 });
+
+    await request(app)
+        .put(`/api/tickets/${response.body.id}`)
+        .set("Cookie", global.signin_and_get_cookie())
+        .send({ title: "update_title", price: 80 })
+        .expect(401);
+});
 
 it("returns a 400 if the user provides an invalid title or price", async () => {});
 

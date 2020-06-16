@@ -19,6 +19,11 @@ router.put(
             throw new NotFoundError();
         }
 
+        // to update the ticket, the user must be the author of the ticket
+        if (ticket.userId !== req.currentUser!.id) {
+            throw new NotAuthorizedError();
+        }
+
         res.send(ticket);
     }
 );
