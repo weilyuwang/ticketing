@@ -17,12 +17,16 @@ stan.on("connect", () => {
     });
 
     // set to manually acknowledge the receival of event/message
-    const options = stan.subscriptionOptions().setManualAckMode(true);
+    const options = stan
+        .subscriptionOptions()
+        .setManualAckMode(true)
+        .setDeliverAllAvailable()
+        .setDurableName("accounting-service");
 
     // channel/subject + queue group
     const subscription = stan.subscribe(
         "ticket:created",
-        "orders-service-queue-group",
+        "queue-group-name",
         options
     );
 
