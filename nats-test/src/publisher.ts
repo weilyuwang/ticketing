@@ -12,9 +12,9 @@ stan.on("connect", () => {
 
     // need to convert JSON into string before send to NATS streaming
     const data = JSON.stringify({
-        id: "123",
+        id: "123456",
         title: "concert",
-        price: 1000,
+        price: 10000,
     });
 
     // publish data to channel ticket:create
