@@ -5,6 +5,7 @@ import {
 } from "@wwticketing/common";
 import { body } from "express-validator";
 import { Ticket } from "../models/ticket";
+import { TicketCreatedPublisher } from "../events/publishers/ticket-created-publisher";
 
 const router = express.Router();
 
@@ -27,7 +28,16 @@ router.post(
             userId: req.currentUser!.id,
         });
 
+        // save ticket to database
         await ticket.save();
+
+        // publish ticket create event/message to NATS Streaming server
+        new TicketCreatedPublisher(client).publish({
+            id: ticket.id,
+            title: ticket.title,
+            price: ticket.price,
+            userId: ticket.userId,
+        });
 
         res.status(201).send(ticket);
     }
