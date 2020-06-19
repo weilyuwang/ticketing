@@ -1,4 +1,12 @@
 import nats from "node-nats-streaming";
+import { Publisher } from "./events/base-publisher";
+import { TicketCreatedPublisher } from "./events/ticket-created-publisher";
+
+const HARD_CODED_DATA = {
+    id: "123456",
+    title: "concert",
+    price: 1000,
+};
 
 console.clear();
 
@@ -10,15 +18,8 @@ const stan = nats.connect("ticketing", "abc", {
 stan.on("connect", () => {
     console.log("Publisher connected to NATS");
 
-    // need to convert JSON into string before send to NATS streaming
-    const data = JSON.stringify({
-        id: "123456",
-        title: "concert",
-        price: 10000,
-    });
+    const publisher = new TicketCreatedPublisher(stan);
 
-    // publish data to channel ticket:create
-    stan.publish("ticket:created", data, () => {
-        console.log("Event published");
-    });
+    // publish data
+    publisher.publish(HARD_CODED_DATA);
 });
