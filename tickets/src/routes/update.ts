@@ -7,6 +7,8 @@ import {
     NotAuthorizedError,
 } from "@wwticketing/common";
 import { Ticket } from "../models/ticket";
+import { TicketUpdatedPublisher } from "../events/publishers/ticket-updated-publisher";
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
@@ -38,6 +40,14 @@ router.put(
         });
 
         await ticket.save();
+
+        // publish ticket updated event/message to NATS Streaming server
+        new TicketUpdatedPublisher(natsWrapper.client).publish({
+            id: ticket.id,
+            title: ticket.title,
+            price: ticket.price,
+            userId: ticket.userId,
+        });
 
         res.send(ticket);
     }
