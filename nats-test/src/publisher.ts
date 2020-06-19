@@ -5,7 +5,7 @@ import { TicketCreatedPublisher } from "./events/ticket-created-publisher";
 const HARD_CODED_DATA = {
     id: "123456",
     title: "concert",
-    price: 1000,
+    price: 999,
 };
 
 console.clear();
@@ -15,11 +15,15 @@ const stan = nats.connect("ticketing", "abc", {
     url: "http://localhost:4222",
 });
 
-stan.on("connect", () => {
+stan.on("connect", async () => {
     console.log("Publisher connected to NATS");
 
     const publisher = new TicketCreatedPublisher(stan);
 
     // publish data
-    publisher.publish(HARD_CODED_DATA);
+    try {
+        await publisher.publish(HARD_CODED_DATA);
+    } catch (err) {
+        console.log(err);
+    }
 });
