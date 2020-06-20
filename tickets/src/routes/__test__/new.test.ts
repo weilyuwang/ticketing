@@ -1,6 +1,7 @@
 import request from "supertest";
 import { app } from "../../app";
 import { Ticket } from "../../models/ticket";
+import { natsWrapper } from "../../nats-wrapper";
 
 it("has a route handler listening to /api/tickets for post request", async () => {
     const response = await request(app).post("/api/tickets").send({});
@@ -71,7 +72,6 @@ it("creates a ticket with valid inputs", async () => {
     // initially, there wont be any data in the mock mongodb
     expect(tickets.length).toEqual(0);
 
-    const price = 20;
     const TITLE = "test_ticket_title";
 
     await request(app)
@@ -84,4 +84,18 @@ it("creates a ticket with valid inputs", async () => {
     expect(tickets.length).toEqual(1);
     expect(tickets[0].price).toEqual(20);
     expect(tickets[0].title).toEqual(TITLE);
+});
+
+it("publishes an event", async () => {
+    // create a ticket
+    const TITLE = "test_ticket_title";
+
+    await request(app)
+        .post("/api/tickets")
+        .set("Cookie", global.signin_and_get_cookie())
+        .send({ title: TITLE, price: 20 })
+        .expect(201); // expect 201 CREATED
+
+    // check that if the publish() function has been called (an event has been sent)
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
 });
