@@ -2,10 +2,6 @@ import request from "supertest";
 import { app } from "../../app";
 import { Ticket } from "../../models/ticket";
 
-// use jest to mock the nats-wrapper
-// jest will automatically use the fake nats-wrapper inside __mock__ folder
-jest.mock("../../nats-wrapper");
-
 it("has a route handler listening to /api/tickets for post request", async () => {
     const response = await request(app).post("/api/tickets").send({});
 

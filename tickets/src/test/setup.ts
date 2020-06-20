@@ -10,6 +10,10 @@ declare global {
     }
 }
 
+// use jest to mock the nats-wrapper
+// jest will automatically use the fake nats-wrapper inside __mock__ folder
+jest.mock("../nats-wrapper");
+
 // declare in-memory mock mongo server
 let mongo: any;
 
