@@ -8,6 +8,11 @@ import {
     currentUserMiddleware,
 } from "@wwticketing/common";
 
+import { deleteOrderRouter } from "./routes/delete";
+import { indexOrderRouter } from "./routes/index";
+import { newOrderRouter } from "./routes/new";
+import { showOrderRouter } from "./routes/show";
+
 const app = express();
 app.set("trust proxy", true); // trust ingress & nginx proxy
 app.use(json());
@@ -24,6 +29,10 @@ app.use(
 app.use(currentUserMiddleware);
 
 // express routes
+app.use(deleteOrderRouter);
+app.use(indexOrderRouter);
+app.use(newOrderRouter);
+app.use(showOrderRouter);
 
 // use express-async-errors lib behind the scene to handle async errors
 app.all("*", async (req, res) => {
