@@ -43,13 +43,11 @@ From root project directory: run `skaffold dev`
 
 ---
 
-#### Client Side
+## Client
 
-**NextJS**
+### NextJS
 
-`NextJS: Minimalistic framework for rendering React app on the server.`:
-
-> check documentations: https://nextjs.org/
+> Minimalistic ReactJS framework for rendering React app on the server. https://nextjs.org/
 
 ---
 
@@ -65,24 +63,49 @@ All the commonly used classes & middlewares are extracted into a published NPM M
 
 ---
 
-### API
+## API
 
-#### tickets service
+### auth service
+
+---
+
+### tickets service
 
 > GET /api/tickets
-> To retrieve all tickets
+> Retrieve all tickets
 >
 > GET /api/tickets/:id
-> To retrieve ticket with specific ID
+> Retrieve ticket with specific ID
 >
 > POST /api/tickets
-> with request body {title: string, price: string}, to create a ticket
+> with request body { title: string, price: string }
+> Create a ticket
 >
 > PUT /api/tickets/:id
-> with request body {title: string, price: string}, to update a ticket
+> with request body { title: string, price: string }
+> Update a ticket
+
+---
+
+### orders service
+
+> GET /api/orders
+> Retrieve all active orders for the given user making the request
+>
+> GET /api/orders/:id
+> Get details about a specific order
+>
+> POST /api/orders
+> with request body { ticketId: string }
+> Create an order to purchase the specified ticket
+>
+> DELETE /api/orders/:id
+> Cancel the order
 
 ---
 
 ### Event Bus
 
 #### NATS Streaming Server
+
+---
