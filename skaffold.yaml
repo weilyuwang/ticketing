@@ -35,3 +35,11 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: weilyuwang/ticketing-orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
