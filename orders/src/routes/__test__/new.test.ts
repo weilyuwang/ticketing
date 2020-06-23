@@ -54,11 +54,13 @@ it("reserves a ticket", async () => {
     await ticket.save();
 
     // make request
-    await request(app)
+    const response = await request(app)
         .post("/api/orders")
         .set("Cookie", global.signin_and_get_cookie())
         .send({
             ticketId: ticket.id,
         })
         .expect(201);
+
+    expect(response.body.ticket.id).toEqual(ticket.id);
 });
