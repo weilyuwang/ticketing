@@ -52,10 +52,10 @@ const orderSchema = new mongoose.Schema(
     }
 );
 
-const Order = mongoose.model<OrderDoc, OrderModel>("Order", orderSchema);
-
 orderSchema.statics.build = (attrs: OrderAttrs) => {
     return new Order(attrs);
 };
+
+const Order = mongoose.model<OrderDoc, OrderModel>("Order", orderSchema);
 
 export { Order };
