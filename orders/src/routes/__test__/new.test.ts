@@ -63,4 +63,8 @@ it("reserves a ticket", async () => {
         .expect(201);
 
     expect(response.body.ticket.id).toEqual(ticket.id);
+
+    const orders = await Order.find({});
+    expect(orders.length).toEqual(1);
+    expect(orders[0].ticket.toString()).toEqual(ticket.id);
 });
