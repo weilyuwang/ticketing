@@ -26,4 +26,5 @@ class NatsWrapper {
     }
 }
 
+// Singleton NATS Client: export an instance instead of a class
 export const natsWrapper = new NatsWrapper();

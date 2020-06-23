@@ -3,8 +3,7 @@ import { app } from "../../app";
 import mongoose from "mongoose";
 import { Order, OrderStatus } from "../../models/order";
 import { Ticket } from "../../models/ticket";
-
-// TODO: Adds user authentication tests
+import { natsWrapper } from "../../nats-wrapper"; // mock natsWrapper is instead imported by jest
 
 it("returns an error if the ticket does not exist", async () => {
     const ticketId = mongoose.Types.ObjectId();
@@ -69,4 +68,23 @@ it("reserves a ticket", async () => {
     expect(orders[0].ticket.toString()).toEqual(ticket.id);
 });
 
-it.todo("emits an order created event");
+it("emits an order created event", async () => {
+    // setup: create a ticket
+    const ticket = Ticket.build({
+        title: "concert",
+        price: 20,
+    });
+    await ticket.save();
+
+    // make request to create an order
+    await request(app)
+        .post("/api/orders")
+        .set("Cookie", global.signin_and_get_cookie())
+        .send({
+            ticketId: ticket.id,
+        })
+        .expect(201);
+
+    // make sure we have called publish() on nats client to publish the event
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
+});
