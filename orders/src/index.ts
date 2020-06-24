@@ -22,9 +22,6 @@ const start = async () => {
         throw new Error("NATS_CLIENT_ID must be defined");
     }
 
-    new TicketCreatedListener(natsWrapper.client).listen();
-    new TicketUpdatedListener(natsWrapper.client).listen();
-
     try {
         await natsWrapper.connect(
             process.env.NATS_CLUSTER_ID,
@@ -39,6 +36,9 @@ const start = async () => {
         });
         process.on("SIGINT", () => natsWrapper.client.close());
         process.on("SIGTERM", () => natsWrapper.client.close());
+
+        new TicketCreatedListener(natsWrapper.client).listen();
+        new TicketUpdatedListener(natsWrapper.client).listen();
 
         await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
