@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import { app } from "./app";
 import { natsWrapper } from "./nats-wrapper";
+import { TicketCreatedListener } from "./events/listeners/ticket-created-listener";
+import { TicketUpdatedListener } from "./events/listeners/ticket-updated-listener";
 
 const start = async () => {
     // First check if JWT_KEY is defined
@@ -19,6 +21,9 @@ const start = async () => {
     if (!process.env.NATS_CLIENT_ID) {
         throw new Error("NATS_CLIENT_ID must be defined");
     }
+
+    new TicketCreatedListener(natsWrapper.client).listen();
+    new TicketUpdatedListener(natsWrapper.client).listen();
 
     try {
         await natsWrapper.connect(
