@@ -104,7 +104,7 @@ All the commonly used classes & middlewares are extracted into a published NPM M
 
 ---
 
-### Event Bus
+### Event-Driven Architecture
 
 #### NATS Streaming Server
 
