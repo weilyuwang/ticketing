@@ -18,12 +18,13 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
     }
 
     // Mark the ticket as being reserved by setting its orderId property
+    // - update orderId property on the ticket once we receive an order created/updated event
     ticket.set({ orderId: data.id })
 
     // Save the ticket
     await ticket.save()
 
-    // pubish ticket created event
+    // pubish ticket updated event
     new TicketUpdatedPublisher(this.client).publish({
       id: ticket.id,
       version: ticket.version,
