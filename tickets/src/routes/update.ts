@@ -5,6 +5,7 @@ import {
     requireAuthMiddleware,
     NotFoundError,
     NotAuthorizedError,
+    BadRequestError,
 } from "@wwticketing/common";
 import { Ticket } from "../models/ticket";
 import { TicketUpdatedPublisher } from "../events/publishers/ticket-updated-publisher";
@@ -27,6 +28,11 @@ router.put(
 
         if (!ticket) {
             throw new NotFoundError();
+        }
+
+        // if the ticket is locked (has orderId property)
+        if (ticket.orderId) {
+            throw new BadRequestError('Cannot edit a reserved ticket')
         }
 
         // to update the ticket, the user must be the author of the ticket
