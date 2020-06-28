@@ -14,10 +14,14 @@ export interface TicketDoc extends mongoose.Document {
     version: number;
     isReserved(): Promise<boolean>;
 }
+// want to call ticket.isReserved()
 
 interface TicketModel extends mongoose.Model<TicketDoc> {
     build(attrs: TicketAttrs): TicketDoc;
+    findByEvent(event: { id: string, version: number }): Promise<TicketDoc | null>;
 }
+// want to call Ticket.build({})
+// want to call Ticket.findByEvent()
 
 const ticketSchema = new mongoose.Schema(
     {
@@ -43,6 +47,13 @@ const ticketSchema = new mongoose.Schema(
 
 ticketSchema.set("versionKey", "version");
 ticketSchema.plugin(updateIfCurrentPlugin);
+
+ticketSchema.statics.findByEvent = (event: { id: string, version: number }) => {
+    return Ticket.findOne({
+        _id: event.id,
+        version: event.version - 1,
+    });
+}
 
 // Add a static method to Ticket Model
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
