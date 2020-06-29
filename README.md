@@ -43,95 +43,85 @@ From root project directory: run `skaffold dev`
 
 ---
 
-## Client
+### Client
 
-### NextJS
-
-> Minimalistic ReactJS framework for rendering React app on the server. https://nextjs.org/
+- NextJS
+  `Minimalistic ReactJS framework for rendering React app on the server. https://nextjs.org/`
 
 ---
 
-#### Common NPM Module
+### Common NPM Module
 
 All the commonly used classes & middlewares are extracted into a published NPM Module.
 
-- @wwticketing/common: https://www.npmjs.com/package/@wwticketing/common
+- `@wwticketing/common`: https://www.npmjs.com/package/@wwticketing/common
 
-> Contains commonly used Middlewares and Error Classes for ticketing microservices
+   Contains commonly used Middlewares and Error Classes for ticketing microservices
 
-> Source codes: https://github.com/weilyuwang/ticketing-common-lib
-
----
-
-## API
-
-### auth service
-
-> GET /api/users/currentUser
-> Get current user's information
->
-> POST /api/users/signup
-> with request body { "email": "test@gmail.com", "password": "123456" }
-> User Sign up
->
-> POST /api/users/signin
-> with request body { "email": "test@gmail.com", "password": "123456" }
-> User sign in
->
-> POST /api/users/signout
-> with request body {}
-> User sign out
-
+  Source codes: https://github.com/weilyuwang/ticketing-common-lib
 
 ---
 
-### tickets service
+### API
 
-> GET /api/tickets
-> Retrieve all tickets
->
-> GET /api/tickets/:id
-> Retrieve ticket with specific ID
->
-> POST /api/tickets
-> with request body { title: string, price: string }
-> Create a ticket
->
-> PUT /api/tickets/:id
-> with request body { title: string, price: string }
-> Update a ticket
+#### Event-Driven Architecture 
+- NATS Streaming Server
 
----
-
-### orders service
-
-> GET /api/orders
-> Retrieve all active orders for the given user making the request
->
-> GET /api/orders/:id
-> Get details about a specific order
->
-> POST /api/orders
-> with request body { ticketId: string }
-> Create an order to purchase the specified ticket
->
-> DELETE /api/orders/:id
-> Cancel the order
-
----
-
-### Event-Driven Architecture
-
-#### NATS Streaming Server
-
----
-
-### Optimistic Concurrency Control
+#### Optimistic Concurrency Control
 
 - Leverage `mongoose-update-if-current` npm module to update mongodb documents' version.
 
 
----
+### auth service
+
+- GET /api/users/currentUser
+  `Get current user's information`
+>
+- POST /api/users/signup
+{ "email": "test@gmail.com", "password": "123456" }
+`User Sign up`
+>
+- POST /api/users/signin
+{ "email": "test@gmail.com", "password": "123456" }
+`User sign in`
+>
+- POST /api/users/signout
+{}
+`User sign out`
+
+
+### tickets service
+
+- GET /api/tickets 
+ `Retrieve all tickets`
+>
+- GET /api/tickets/:id
+ `Retrieve ticket with specific ID`
+>
+- POST /api/tickets
+ { title: string, price: string }
+ `Create a ticket`
+>
+- PUT /api/tickets/:id
+  { title: string, price: string }
+  `Update a ticket`
+
+
+### orders service
+
+- GET /api/orders
+ `Retrieve all active orders for the given user making the request`
+>
+- GET /api/orders/:id
+ `Get details about a specific order`
+>
+- POST /api/orders
+  { ticketId: string }
+  `Create an order to purchase the specified ticket`
+>
+- DELETE /api/orders/:id
+  `Cancel the order`
+
 
 ### expiration service
 
