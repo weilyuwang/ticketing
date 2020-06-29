@@ -7,10 +7,7 @@ deploy:
 build:
   local:
     push: false
-  # googleCloudBuild:
-  #   projectId: ticketing-dev-279800
   artifacts:
-    # - image: us.gcr.io/ticketing-dev-279800/auth
     - image: weilyuwang/ticketing-auth
       context: auth
       docker:
@@ -37,6 +34,14 @@ build:
             dest: .
     - image: weilyuwang/ticketing-orders
       context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
+    - image: weilyuwang/ticketing-expiration
+      context: expiration
       docker:
         dockerfile: Dockerfile
       sync:
