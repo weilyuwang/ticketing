@@ -67,6 +67,22 @@ All the commonly used classes & middlewares are extracted into a published NPM M
 
 ### auth service
 
+> GET /api/users/currentUser
+> Get current user's information
+>
+> POST /api/users/signup
+> with request body { "email": "test@gmail.com", "password": "123456" }
+> User Sign up
+>
+> POST /api/users/signin
+> with request body { "email": "test@gmail.com", "password": "123456" }
+> User sign in
+>
+> POST /api/users/signout
+> with request body {}
+> User sign out
+
+
 ---
 
 ### tickets service
