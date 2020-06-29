@@ -9,8 +9,14 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
   readonly queueGroupName: string = queueGroupName;
 
   async onMessage(data: OrderCreatedEvent['data'], msg: Message) {
+
+    const delay = new Date(data.expiresAt).getTime() - new Date().getTime() // get time difference in milliseconds
+    console.log('Waiting this many miliseconds to process the job:', delay)
+
     await expirationQueue.add({
       orderId: data.id
+    }, {
+      delay: delay, // unit: millisecond
     })
 
     msg.ack()
