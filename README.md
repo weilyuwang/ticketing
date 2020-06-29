@@ -113,3 +113,10 @@ All the commonly used classes & middlewares are extracted into a published NPM M
 ### Optimistic Concurrency Control
 
 - Leverage `mongoose-update-if-current` npm module to update mongodb documents' version.
+
+
+---
+
+### expiration service
+
+- BullJS + Redis
