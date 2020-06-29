@@ -125,4 +125,9 @@ All the commonly used classes & middlewares are extracted into a published NPM M
 
 ### expiration service
 
-- BullJS + Redis
+- BullJS 
+  Use Bull.js to manage job queues
+
+- Redis
+  Use Redis to store list of jobs
+ 
