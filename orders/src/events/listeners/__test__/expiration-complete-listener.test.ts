@@ -36,3 +36,42 @@ const setup = async () => {
   return { listener, order, ticket, data, msg }
 
 }
+
+
+it('udpates the order status to cancelled', async () => {
+  const { listener, order, data, msg } = await setup()
+  await listener.onMessage(data, msg)
+
+  const updatedOrder = await Order.findById(order.id)
+
+  expect(updatedOrder!.status).toEqual(OrderStatus.Cancelled)
+
+})
+
+
+it('emits an OrderCancelled event', async () => {
+  const { listener, order, data, msg } = await setup()
+  await listener.onMessage(data, msg)
+
+  // assert that the publish() func gets called
+  expect(natsWrapper.client.publish).toHaveBeenCalled()
+
+  // Grab the event data that got published
+  // tell typescript to calm down as this is just a mock func
+  const eventData = JSON.parse(
+    (natsWrapper.client.publish as jest.Mock).mock.calls[0][1]
+  )
+
+  // assert that correct event data gets sent off
+  expect(eventData.id).toEqual(order.id)
+
+})
+
+
+it('acks the message', async () => {
+  const { listener, data, msg } = await setup()
+  await listener.onMessage(data, msg)
+
+  expect(msg.ack).toHaveBeenCalled()
+
+})
