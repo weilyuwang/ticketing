@@ -7,7 +7,7 @@ import {
     NotFoundError,
     currentUserMiddleware,
 } from "@wwticketing/common";
-
+import { createChargeRouter } from './routes/new'
 
 const app = express();
 app.set("trust proxy", true); // trust ingress & nginx proxy
@@ -25,6 +25,7 @@ app.use(
 app.use(currentUserMiddleware);
 
 // express routes
+app.use(createChargeRouter)
 
 // use express-async-errors lib behind the scene to handle async errors
 app.all("*", async (req, res) => {

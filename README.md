@@ -131,3 +131,12 @@ All the commonly used classes & middlewares are extracted into a published NPM M
 - Redis   
   Use `Redis` to store list of jobs
  
+
+### payments service
+
+- StripeJS     
+  For handling payments
+
+- POST /api/payments   
+  { token: string, orderId: string} 
+  `Create new charge/payment`
