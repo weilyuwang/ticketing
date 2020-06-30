@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import { OrderStatus } from '@wwticketing/common'
 import { Order } from '../../models/order'
 import { stripe } from '../../stripe'
+import { Payment } from '../../models/payment'
 
 jest.mock('../../stripe')
 
@@ -82,5 +83,10 @@ it('returns a 204 with valid input', async () => {
   expect(chargeOptions.source).toEqual('tok_visa')
   expect(chargeOptions.amount).toEqual(100 * 100)
   expect(chargeOptions.currency).toEqual('usd')
+
+  const payment = await Payment.findOne({
+    orderId: order.id
+  })
+  expect(payment!.stripeId).not.toBeNull()
 
 })
