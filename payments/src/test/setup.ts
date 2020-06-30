@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 declare global {
     namespace NodeJS {
         interface Global {
-            signin_and_get_cookie(): string[];
+            signin_and_get_cookie(id?: string): string[];
         }
     }
 }
@@ -45,10 +45,10 @@ afterAll(async () => {
 
 // global function only for test environment
 // signup and return the cookie from the response
-global.signin_and_get_cookie = () => {
+global.signin_and_get_cookie = (id?: string) => {
     // Build a JWT payload. {id, email}
     const payload = {
-        id: new mongoose.Types.ObjectId().toHexString(),
+        id: id || new mongoose.Types.ObjectId().toHexString(),
         email: "test@test.com",
     };
 

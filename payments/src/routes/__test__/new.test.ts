@@ -24,7 +24,8 @@ it('returns a 401 when purchasing an order that does not belong to the current u
   })
   await order.save()
 
-  await request(app).post('/api/payments')
+  await request(app)
+    .post('/api/payments')
     .set('Cookie', global.signin_and_get_cookie())
     .send({
       token: 'aaaaaaa',
@@ -34,5 +35,22 @@ it('returns a 401 when purchasing an order that does not belong to the current u
 })
 
 it('returns a 400 when purchasing a cancelled order', async () => {
+  const userId = mongoose.Types.ObjectId().toHexString()
+  const order = Order.build({
+    id: mongoose.Types.ObjectId().toHexString(),
+    userId: userId,
+    version: 0,
+    price: 100,
+    status: OrderStatus.Cancelled,
+  })
+  await order.save()
 
+  await request(app)
+    .post('/api/payments')
+    .set('Cookie', global.signin_and_get_cookie(userId))
+    .send({
+      token: 'secret_token',
+      orderId: order.id
+    })
+    .expect(400)
 })
