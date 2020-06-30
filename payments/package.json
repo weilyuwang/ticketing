@@ -31,6 +31,7 @@
     "mongoose": "^5.9.18",
     "mongoose-update-if-current": "^1.4.0",
     "node-nats-streaming": "^0.3.2",
+    "stripe": "^8.67.0",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.9.5"
   },
