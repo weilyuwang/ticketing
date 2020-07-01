@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
+import Warning from "../../components/warning";
 
 const STRIPE_PUBLIC_KEY =
   "pk_test_51GzmrmEfLuseb67nBpvjxHmep8tGxj8DNiLHC48E8481QYlshdSXYNiDDpK60SdYDySNZ6tzn1vM5k3xwdXjOnqo0067GjfmxI";
@@ -33,6 +34,7 @@ const OrderShow = ({ currentUser, order }) => {
   return (
     <div>
       <h3>Time left to pay: {timeLeft} seconds</h3>
+      <Warning />
       <StripeCheckout
         token={(token) => console.log(token)}
         stripeKey={STRIPE_PUBLIC_KEY}
