@@ -14,6 +14,8 @@ export default ({ req }) => {
   } else {
     // We must be on the browser
     // Browsers gonna take care of the headers for us
-    return axios.create({});
+    return axios.create({
+      baseURL: "/",
+    });
   }
 };
