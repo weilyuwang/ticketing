@@ -15,7 +15,7 @@ import { OrderCreatedPublisher } from "../events/publishers/order-created-pubish
 
 const router = express.Router();
 
-const EXPIRATION_WINDOW_SECONDS = 1 * 60; // TODO set it to 1 minute for now - change it back to 15 minutes
+const EXPIRATION_WINDOW_SECONDS = 15 * 60;
 
 router.post(
     "/api/orders",
