@@ -7,7 +7,7 @@ import { ExpirationCompleteListener } from "./events/listeners/expiration-comple
 import { PaymentCreatedListener } from "./events/listeners/payment-created-listener";
 
 const start = async () => {
-    console.log("Starting Orders Service...");
+    console.log("Starting...");
 
     // First check if JWT_KEY is defined
     if (!process.env.JWT_KEY) {
