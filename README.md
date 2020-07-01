@@ -44,9 +44,33 @@ From root project directory: run `skaffold dev`
 
 ### Client
 
-- NextJS    
+#### NextJS    
 
   `Minimalistic ReactJS framework for rendering React app on the server. https://nextjs.org/`
+#### Routes  
+
+- /   
+  `Show list of all tickets`
+
+- /auth/signin    
+  `Show sign in form`
+
+- /auth/signup    
+  `Show sign up form`
+
+- /auth/signout   
+  `Sign out`    
+
+- /tickets/new    
+  `Form to create a new ticket`
+
+- /tickets/:ticketId    
+  `Details about a specific ticket`
+
+- /tickets/:orderId   
+  `Show info about an order and payment button`
+
+
 
 ---
 
@@ -138,5 +162,5 @@ All the commonly used classes & middlewares are extracted into a published NPM M
   For handling payments
 
 - POST /api/payments   
-  { token: string, orderId: string} 
+  { token: string, orderId: string}   
   `Create new charge/payment`
