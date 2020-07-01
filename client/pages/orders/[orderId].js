@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import Warning from "../../components/warning";
 import useRequest from "../../hooks/use-request";
+import Router from "next/router";
 
 const STRIPE_PUBLIC_KEY =
   "pk_test_51GzmrmEfLuseb67nBpvjxHmep8tGxj8DNiLHC48E8481QYlshdSXYNiDDpK60SdYDySNZ6tzn1vM5k3xwdXjOnqo0067GjfmxI";
@@ -15,7 +16,7 @@ const OrderShow = ({ currentUser, order }) => {
     body: {
       orderId: order.id,
     },
-    onSuccess: (payment) => console.log(payment),
+    onSuccess: () => Router.push("/orders"),
   });
 
   useEffect(() => {
@@ -50,6 +51,7 @@ const OrderShow = ({ currentUser, order }) => {
         stripeKey={STRIPE_PUBLIC_KEY}
         amount={order.ticket.price * 100}
         email={currentUser.email}
+        // closed={() => Router.push("/orders")}
       />
       {errors}
     </div>
