@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useRequest from "../../hooks/use-request";
+import Router from "next/router";
 
 const NewTicket = () => {
   const [price, setPrice] = useState("");
@@ -11,10 +12,8 @@ const NewTicket = () => {
       title,
       price,
     },
-    onSuccess: (ticket) => console.log(ticket),
+    onSuccess: () => Router.push("/"),
   });
-
-  console.log(typeof price);
 
   const onBlur = () => {
     const value = parseFloat(price);
