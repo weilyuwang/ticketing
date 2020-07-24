@@ -1,13 +1,10 @@
-#### Set up ingress-nginx controller
+#### Set up ingress-nginx controller (required both for local dev and prod deploy)
 
 Check `ingress-nginx` documentation: https://kubernetes.github.io/ingress-nginx/
 
-Docker for Mac:
-`kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-0.32.0/deploy/static/provider/cloud/deploy.yaml`
-
 ---
 
-#### Set up mock host name:
+#### Set up mock host name (only needed for local dev)
 
 **To redirect requests coming to: ticketing.dev => localhost**    
   - only for local development purposes
@@ -24,7 +21,7 @@ Docker for Mac:
 
 ---
 
-#### Skaffold
+#### Skaffold (for local dev)
 
 Install Skaffold Dev Tool: `brew install skaffold`
 
