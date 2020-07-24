@@ -40,17 +40,14 @@ From root project directory: run `skaffold dev`
 
 - Want to be able to revoke a user - so use `short-lived JWT` (e.g. expired in 15 minutes) with `refresh` mechanism.
 
----
 
 ## CI/CD: Github Actions
 
----
 
 ## Deployment
 
 Digital Ocean
 
----
 
 ## Frontend Client
 
@@ -82,7 +79,6 @@ Digital Ocean
 
 
 
----
 
 ## Common NPM Module
 
@@ -94,9 +90,9 @@ All the commonly used classes, interfaces and middlewares, etc. are extracted in
 
   Source codes: https://github.com/weilyuwang/ticketing-common-lib
 
----
 
-### Backend API
+
+## Backend API
 
 #### Microservices + Event-Driven Architecture 
 
