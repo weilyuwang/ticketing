@@ -10,7 +10,6 @@ spec:
     - host: ticketing.dev
       http:
         paths:
-          # path list order MATTERS!!!
           - path: /api/payments/?(.*)
             backend:
               serviceName: payments-srv
