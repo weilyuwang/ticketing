@@ -4,7 +4,7 @@ Check `ingress-nginx` documentation: https://kubernetes.github.io/ingress-nginx/
 
 ---
 
-#### Set up mock host name (only needed for local dev)
+#### Set up mock host name (local dev)
 
 **To redirect requests coming to: ticketing.dev => localhost**    
   - only for local development purposes
@@ -20,7 +20,7 @@ Check `ingress-nginx` documentation: https://kubernetes.github.io/ingress-nginx/
 
 ---
 
-#### Skaffold (for local dev)
+#### Skaffold (local dev)
 
 Install Skaffold Dev Tool: `brew install skaffold`
 
@@ -35,6 +35,16 @@ From root project directory: run `skaffold dev`
 - Want to use Server-Side Rendering and access user's auth information when HTML first gets rendered - so `store and transmit JWT within Cookies`, i.e. use cookies as a transport mechanism.
 
 - Want to be able to revoke a user - so use `short-lived JWT` (e.g. expired in 15 minutes) with `refresh` mechanism.
+
+---
+
+#### CI/CD: Github Actions
+
+---
+
+#### Deployment
+
+Digital Ocean
 
 ---
 
