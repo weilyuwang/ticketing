@@ -39,9 +39,9 @@ From root project directory: run `skaffold dev`
 
 ---
 
-### Client
+### Frontend Client
 
-#### NextJS    
+#### Built with NextJS    
 
   `Minimalistic ReactJS framework for rendering React app on the server. https://nextjs.org/`
 #### Routes  
@@ -73,7 +73,7 @@ From root project directory: run `skaffold dev`
 
 ### Common NPM Module
 
-All the commonly used classes & middlewares are extracted into a published NPM Module.    
+All the commonly used classes, interfaces and middlewares, etc. are extracted into a published NPM Module.    
 
 - `@wwticketing/common`: https://www.npmjs.com/package/@wwticketing/common    
 
@@ -83,9 +83,10 @@ All the commonly used classes & middlewares are extracted into a published NPM M
 
 ---
 
-### API
+### Backend API
 
-#### Event-Driven Architecture 
+#### Microservices + Event-Driven Architecture 
+
 - NATS Streaming Server
 
 #### Optimistic Concurrency Control
