@@ -1,4 +1,6 @@
-### Local Dev
+# Ticketing App - Microservices & Event Driven Architecture
+
+## Local Dev
 
 #### Set up ingress-nginx controller (required both for local dev and prod deploy)
 
@@ -40,17 +42,17 @@ From root project directory: run `skaffold dev`
 
 ---
 
-#### CI/CD: Github Actions
+## CI/CD: Github Actions
 
 ---
 
-### Deployment
+## Deployment
 
 Digital Ocean
 
 ---
 
-### Frontend Client
+## Frontend Client
 
 #### Built with NextJS    
 
@@ -82,7 +84,7 @@ Digital Ocean
 
 ---
 
-### Common NPM Module
+## Common NPM Module
 
 All the commonly used classes, interfaces and middlewares, etc. are extracted into a published NPM Module.    
 
@@ -105,7 +107,7 @@ All the commonly used classes, interfaces and middlewares, etc. are extracted in
 - Leverage `mongoose-update-if-current` npm module to update mongodb documents' version.
 
 
-### auth service
+## auth service
 
 - GET /api/users/currentUser  
   `Get current user's information`
