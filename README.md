@@ -1,3 +1,5 @@
+### Local Dev
+
 #### Set up ingress-nginx controller (required both for local dev and prod deploy)
 
 Check `ingress-nginx` documentation: https://kubernetes.github.io/ingress-nginx/
@@ -42,7 +44,7 @@ From root project directory: run `skaffold dev`
 
 ---
 
-#### Deployment
+### Deployment
 
 Digital Ocean
 
