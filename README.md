@@ -10,6 +10,27 @@ Check `ingress-nginx` documentation: https://kubernetes.github.io/ingress-nginx/
 
 ---
 
+#### Create secret tokens in k8s cluster
+
+- This is required for both local dev k8s and DigitalOcean k8s   
+
+```
+e.g. To create a secret token in k8s cluster that is used for stripe payment service:
+
+kubectl create secret generic stripe-secret --from-literal STRIPE_KEY=[YOU_STRIPE_SECRET_KEY]
+
+And inside payment service k8s deployment config file (payments-depl.yaml):
+
+- name: STRIPE_KEY
+  valueFrom:
+    secretKeyRef:
+      name: stripe-secret
+      key: STRIPE_KEY
+      
+```
+
+---
+
 #### Set up mock host name (local dev)
 
   - To redirect requests coming to: ticketing.dev => localhost      
