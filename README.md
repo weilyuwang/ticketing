@@ -12,7 +12,7 @@ Check `ingress-nginx` documentation: https://kubernetes.github.io/ingress-nginx/
 
 #### Set up mock host name (local dev)
 
-**To redirect requests coming to: ticketing.dev => localhost**    
+  - To redirect requests coming to: ticketing.dev => localhost      
   - only for local development purposes
 
   - MacOS/Linux:  
@@ -48,7 +48,7 @@ From root project directory: run `skaffold dev`
 
 ## Deployment
 
-Digital Ocean
+**Digital Ocean Kubernetes Cluster**
 
 
 ## Frontend Client
