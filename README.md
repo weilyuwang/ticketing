@@ -15,9 +15,8 @@ Check `ingress-nginx` documentation: https://kubernetes.github.io/ingress-nginx/
   - Windows:  
   modify `C:\Windows\System32\Drivers\etc\hosts` file to include `127.0.0.1 ticketing.dev`
 
-> To skip the unskippable HTTPS warning in Chrome:
->
-> - try type **thisisunsafe**
+  - To skip the unskippable HTTPS warning in Chrome:    
+  try type **thisisunsafe**
 
 ---
 
