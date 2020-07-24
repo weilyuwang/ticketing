@@ -2,7 +2,9 @@
 
 ## Local Dev
 
-#### Set up ingress-nginx controller (required both for local dev and prod deploy)
+#### Set up ingress-nginx controller  
+
+- This is required for both local dev K8s cluster and DigitalOcean K8s cluster
 
 Check `ingress-nginx` documentation: https://kubernetes.github.io/ingress-nginx/
 
