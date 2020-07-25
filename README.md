@@ -71,6 +71,7 @@ From root project directory: run `skaffold dev`
 
 **Digital Ocean Kubernetes Cluster**
 
+app live at www.weilyuticketing.shop
 
 ## Frontend Client
 
