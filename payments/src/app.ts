@@ -7,7 +7,7 @@ import {
     NotFoundError,
     currentUserMiddleware,
 } from "@wwticketing/common";
-import { createChargeRouter } from './routes/new'
+import { createChargeRouter } from "./routes/new";
 
 const app = express();
 app.set("trust proxy", true); // trust ingress & nginx proxy
@@ -17,7 +17,8 @@ app.use(json());
 app.use(
     cookieSession({
         signed: false, // disable encryption on the cookie - JWT is already secured
-        secure: process.env.NODE_ENV !== "test", // *** HTTPS connection only ***, but exception made for testing
+        // secure: process.env.NODE_ENV !== "test", // *** HTTPS connection only ***, but exception made for testing
+        secure: false,
     })
 );
 
@@ -25,7 +26,7 @@ app.use(
 app.use(currentUserMiddleware);
 
 // express routes
-app.use(createChargeRouter)
+app.use(createChargeRouter);
 
 // use express-async-errors lib behind the scene to handle async errors
 app.all("*", async (req, res) => {
