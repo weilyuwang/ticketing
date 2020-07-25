@@ -22,14 +22,16 @@ export default ({ currentUser }) => {
       );
     });
 
-  const appName = `Ticketing${process.env.ENVIRONMENT}`;
+  const label = process.env.ENVIRONMENT
+    ? `Ticketing${process.env.ENVIRONMENT}`
+    : "Ticketing";
 
   console.log(process.env.ENVIRONMENT, process.env.BASE_URL);
 
   return (
     <nav className="navbar navbar-light bg-light">
       <Link href="/">
-        <a className="navbar-brand">{appName}</a>
+        <a className="navbar-brand">{label}</a>
       </Link>
 
       <div className="d-flex justify-content-end">
