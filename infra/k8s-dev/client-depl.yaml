@@ -15,6 +15,11 @@ spec:
       containers:
         - name: client
           image: weilyuwang/ticketing-client
+          env:
+            - name: BASE_URL
+              value: "http://ingress-nginx-controller.ingress-nginx.svc.cluster.local"
+            - name: ENVIRONMENT
+              value: Dev
 ---
 apiVersion: v1
 kind: Service
