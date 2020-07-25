@@ -7,8 +7,7 @@ export default ({ req }) => {
   if (typeof window === "undefined") {
     // we are on the server
     return axios.create({
-      baseURL: "http://www.weilyuticketing.shop",
-
+      baseURL: process.env.BASE_URL,
       headers: req.headers,
     });
   } else {
